@@ -34,5 +34,8 @@ AGENTS.md
 # Transcripts
 *.jsonl
 
+# Dev docs / plans
+docs/
+
 # Game replays
 *.txt
