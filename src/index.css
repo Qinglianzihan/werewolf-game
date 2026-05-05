@@ -1,0 +1,259 @@
+/* Google Fonts — must precede @import "tailwindcss" per v4 spec */
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Serif+SC:wght@400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+/* ============================================
+   Design System — Medieval Tavern Atmosphere
+   ============================================ */
+
+@theme {
+  /* —— Warm Dark Palette (Oak + Parchment) —— */
+  --color-bg-base: #1a1510;
+  --color-bg-surface: #231e16;
+  --color-bg-elevated: #2c2520;
+  --color-bg-overlay: #322b24;
+  --color-bg-hover: #3a322a;
+
+  /* —— Candlelight Gold —— */
+  --color-accent: #d4a853;
+  --color-accent-dim: #a08040;
+  --color-accent-glow: #f0c060;
+  --color-accent-bg: rgba(212, 168, 83, 0.08);
+
+  /* —— Text —— */
+  --color-text-primary: #f5f0e8;
+  --color-text-secondary: #d8d1c4;
+  --color-text-dim: #bfb5a5;
+  --color-text-muted: #b0a395;
+
+  /* —— Role Colors (jewel tone, saturated against warm dark bg) —— */
+  --color-wolf: #c0392b;
+  --color-blood: #8A1F2E;
+  --color-villager: #7d8c6e;
+  --color-seer: #a855f7;
+  --color-witch: #22c55e;
+  --color-hunter: #f59e0b;
+  --color-guard: #38bdf8;
+  --color-cupid: #ec4899;
+  --color-idiot: #eab308;
+  --color-knight: #6366f1;
+
+  /* —— Borders —— */
+  --color-border: rgba(255, 255, 255, 0.06);
+  --color-border-strong: rgba(255, 255, 255, 0.1);
+  --color-border-accent: rgba(212, 168, 83, 0.2);
+
+  /* —— Typography —— */
+  --font-display: 'UnifrakturMaguntia', 'Noto Serif SC', serif;
+  --font-heading: 'Noto Serif SC', 'Georgia', serif;
+  --font-body: 'EB Garamond', 'Noto Serif SC', ui-serif, Georgia, serif;
+  --font-number: 'Georgia', 'EB Garamond', serif;
+  --font-mono: ui-monospace, 'Cascadia Code', monospace;
+
+  /* —— Easing —— */
+  --ease-ritual: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-candle: cubic-bezier(0.45, 0, 0.55, 1);
+  --ease-creak: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  /* —— Shadows —— */
+  --shadow-candle: 0 0 20px rgba(212, 168, 83, 0.15), 0 0 60px rgba(212, 168, 83, 0.05);
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-glow: 0 0 30px rgba(240, 192, 96, 0.25), 0 0 60px rgba(240, 192, 96, 0.1);
+}
+
+/* ============================================
+   Base
+   ============================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  background: var(--color-bg-base);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* ============================================
+   SVG Texture Filter (injected via React)
+   ============================================ */
+
+/* ============================================
+   Custom Utilities — @utility auto-generates variants
+   ============================================ */
+
+@utility texture-parchment {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    mix-blend-mode: overlay;
+    border-radius: inherit;
+  }
+}
+
+@utility glow-candle {
+  box-shadow: var(--shadow-candle);
+}
+
+@utility glow-candle-strong {
+  box-shadow: var(--shadow-glow);
+}
+
+@utility border-iron {
+  border: 1px solid var(--color-border-strong);
+}
+
+@utility border-gold {
+  border: 1px solid var(--color-border-accent);
+}
+
+@utility surface-wood {
+  background: linear-gradient(
+    180deg,
+    var(--color-bg-surface) 0%,
+    var(--color-bg-elevated) 100%
+  );
+  border: 1px solid var(--color-border);
+}
+
+@utility surface-parchment {
+  background: linear-gradient(
+    135deg,
+    #2a2418 0%,
+    var(--color-bg-surface) 30%,
+    #252016 70%,
+    #221d14 100%
+  );
+  border: 1px solid var(--color-border-accent);
+}
+
+/* ============================================
+   Keyframes
+   ============================================ */
+
+@keyframes curtain-rise {
+  from {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  to {
+    opacity: 0;
+    transform: scaleY(0);
+    visibility: hidden;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes firelight-hover {
+  0% {
+    box-shadow: 0 0 8px rgba(212, 168, 83, 0.1);
+  }
+  100% {
+    box-shadow: 0 0 24px rgba(240, 192, 96, 0.3);
+  }
+}
+
+@keyframes message-new {
+  0% {
+    box-shadow: 0 0 24px rgba(240, 192, 96, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0px rgba(240, 192, 96, 0);
+  }
+}
+
+@keyframes soft-pulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes moon-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(212, 168, 83, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(240, 192, 96, 0.5));
+  }
+}
+
+/* —— Animation utility classes —— */
+.animate-curtain-rise { animation: curtain-rise 0.8s var(--ease-ritual) forwards; }
+.animate-fade-in { animation: fade-in 0.6s var(--ease-ritual) forwards; }
+.animate-slide-up { animation: slide-up 0.5s var(--ease-ritual) forwards; }
+.animate-message-new { animation: message-new 1.5s var(--ease-candle) forwards; }
+.animate-firelight { transition: box-shadow 0.3s var(--ease-candle); }
+.animate-firelight:hover { animation: firelight-hover 0.4s var(--ease-candle) forwards; }
+.animate-soft-pulse { animation: soft-pulse 2.4s var(--ease-candle) infinite; }
+.animate-moon-glow { animation: moon-glow 3s var(--ease-candle) infinite; }
+.animate-sheriff-glow { animation: sheriff-glow 2s var(--ease-candle) infinite; }
+
+@keyframes sheriff-glow {
+  0%, 100% { box-shadow: 0 0 8px rgba(212, 168, 83, 0.2); }
+  50% { box-shadow: 0 0 20px rgba(240, 192, 96, 0.5); }
+}
+
+/* ============================================
+   Scrollbar
+   ============================================ */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(212, 168, 83, 0.15) transparent;
+}
+
+/* ============================================
+   Selection
+   ============================================ */
+
+::selection {
+  background: rgba(212, 168, 83, 0.3);
+  color: var(--color-text-primary);
+}

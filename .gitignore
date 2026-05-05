@@ -1,0 +1,41 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# STW runtime state
+.stw/reports/*
+!.stw/reports/.gitkeep
+.stw/.progress.json
+.stw/lockdown.json
+.stw/test-results.json
+.stw/.quote-history.json
+
+# Claude Code internal
+.claude/
+
+# Transcripts
+*.jsonl
+
+# Game replays
+*.txt
