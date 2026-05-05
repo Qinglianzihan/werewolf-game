@@ -23,16 +23,13 @@ dist-ssr
 *.sln
 *.sw?
 
-# STW runtime state
-.stw/reports/*
-!.stw/reports/.gitkeep
-.stw/.progress.json
-.stw/lockdown.json
-.stw/test-results.json
-.stw/.quote-history.json
+# STW workflow (internal dev tool)
+.stw/
 
 # Claude Code internal
 .claude/
+CLAUDE.md
+AGENTS.md
 
 # Transcripts
 *.jsonl
